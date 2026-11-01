@@ -1,0 +1,10 @@
+Item,Cost,Qty,Total
+Paper,2.5,4,=B2*C2
+Pens,1.25,10,=B3*C3
+Ink,18.9,2,=B4*C4
+,,,
+Sum,,=SUM(C2:C4),=SUM(D2:D4)
+Average,,,=AVERAGE(D2:D4)
+Largest,,,=MAX(D2:D4)
+Tax 8%,,,"=ROUND(D6*8%,2)"
+Total,,,=D6+D9
