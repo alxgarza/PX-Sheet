@@ -9,6 +9,10 @@ It is a native app, `SPREADSHEET.bin`, built from the
 [PX-42F App Template](../PX-42F-App-Template). It runs from
 **Settings → Games & Apps**.
 
+**[`spreadsheet_manual.html`](spreadsheet_manual.html) is the full manual**, with
+screenshots: the keys, both keyboards, formulas, every function, copying and
+filling, files. This README is the short version.
+
 ## The screen
 
 - **The top line** shows the cell's name and what's typed in it. While you type,
@@ -39,8 +43,9 @@ It is a native app, `SPREADSHEET.bin`, built from the
 - **GOTO** goes to a cell by name, such as `C12`.
 - **COPY** marks a block: move to its other corner, then press COPY again.
   **PASTE** puts the block at the cursor. Relative names in its formulas move
-  with it; `$A$1` names don't. Copy one cell, mark a block, then PASTE to fill
-  the block with it, as Excel's fill down does.
+  with it; `$A$1` names don't. With a block marked, PASTE repeats the copy to
+  fill it: copy a row of formulas, mark the rows below, PASTE, as Excel's fill
+  down does.
 - **FILE** has Save, Save as, Open and New sheet.
 - **WIDTH** changes the cursor's column width (3 to 30) with ↑ ↓.
 - **FORMAT** is General, Fix 0-6 or Sci 1-6, for the whole sheet.
@@ -115,6 +120,7 @@ passes, not by recursion, so it can't overflow the calculator's stack.
 | Build | `make` | `build/SPREADSHEET.bin` |
 | Test | `make test` | The engine on the Mac (`tests/test_sheet.c`): formulas, errors, number display, copying, CSV. |
 | Simulate | `make sim` | Opens `sim/drive/.../BUDGET.CSV`, types a formula, opens the catalog and points. Screenshots are saved in `build/sim-out`. |
+| | `tools/shots.sh` | Takes the manual's screenshots in the simulator, in `build/shots`, then builds `spreadsheet_manual.html` (`tools/make_manual.py`, `tools/manual.css`). Run it after changing a screen or the keys. |
 | Simulate live | `make live` | In the browser, with a keypad. |
 | Install | `make install` | Copies the `.bin` to the calculator in USB Drive mode. |
 
@@ -127,4 +133,5 @@ agree with the calculator's to about 15 digits.
 |---|---|
 | `src/sheet.c`, `src/sheet.h` | The engine: cells, formulas, recalculation, how a value is shown, CSV. It has no screen or key code, so `make test` runs it on the Mac. |
 | `src/app.c` | The screen, the keys, the menus and the files. |
+| `tools/make_manual.py` | Builds the manual. The keyboard maps come from `app.c`'s `letters` and `symbols` tables, and the function list from `sheet.c`'s `sheet_functions`, so the manual can't fall behind them. |
 | `px42f/`, `sim/` | The framework, kept the same as the template's by `../PX-42F-App-Template/tools/sync_framework.sh`. |

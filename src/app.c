@@ -531,7 +531,7 @@ static void enter_cell(const char *text, bool abc, bool pointing) {
     int cursor = -1;
     while (edit(buf, sizeof(buf), abc, ENTRY_CELL, what, cursor)) {
         if (buf[0] == '=' && (cursor = sheet_check(buf)) >= 0) {
-            say("Can't read this formula: the cursor is where");
+            say("Can't read it: fix it at the cursor");
         } else if (!sheet_set(cur_row, cur_col, buf)) {
             say("Memory full");
         } else {
@@ -610,7 +610,8 @@ static bool paste_cell(int row, int col, int r, int c) {
     return true;
 }
 
-/* The copy at the cursor; one cell copied into a marked block fills it. */
+/* The copy at the cursor; into a marked block, over and over to fill it
+ * (a row copied, then a column marked: Excel's fill down). */
 static void paste(void) {
     if (clip_rows == 0) {
         say("Nothing copied yet: COPY first");
@@ -618,11 +619,16 @@ static void paste(void) {
     }
     int r0, c0, r1, c1;
     selection(&r0, &c0, &r1, &c1);
-    bool fill = marking && clip_rows == 1 && clip_cols == 1;
+    if (!marking) {
+        r1 = r0 + clip_rows - 1;
+        c1 = c0 + clip_cols - 1;
+    } else if (c1 - c0 + 1 < clip_cols) { /* a row copied, one column marked: the row's width */
+        c1 = c0 + clip_cols - 1;
+    }
     bool ok = true;
-    for (int row = r0; ok && row <= (fill ? r1 : r0 + clip_rows - 1) && row < SHEET_ROWS; row++)
-        for (int col = c0; ok && col <= (fill ? c1 : c0 + clip_cols - 1) && col < SHEET_COLS; col++)
-            ok = fill ? paste_cell(row, col, 0, 0) : paste_cell(row, col, row - r0, col - c0);
+    for (int row = r0; ok && row <= r1 && row < SHEET_ROWS; row++)
+        for (int col = c0; ok && col <= c1 && col < SHEET_COLS; col++)
+            ok = paste_cell(row, col, (row - r0) % clip_rows, (col - c0) % clip_cols);
     marking = false;
     changed();
 }
