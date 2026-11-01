@@ -1,15 +1,15 @@
-# PX-42F Spreadsheet
+# PX-Sheet
 
 A spreadsheet for the **PX-42F** calculator: a grid of cells A1 to Z999 with
 formulas, worked out in the calculator's own 34-digit decimals, so 0.1 + 0.2
 is exactly 0.3. Sheets are CSV files: make one on the computer, work on it on
 the calculator, open it again in Excel or Numbers with its formulas.
 
-It is a native app, `SPREADSHEET.bin`, built from the
+It is a native app, `PX-Sheet.bin`, built from the
 [PX-42F App Template](../PX-42F-App-Template). It runs from
 **Settings → Games & Apps**.
 
-**[`spreadsheet_manual.html`](spreadsheet_manual.html) is the full manual**, with
+**[`px-sheet_manual.html`](px-sheet_manual.html) is the full manual**, with
 screenshots: the keys, both keyboards, formulas, every function, copying and
 filling, files. This README is the short version.
 
@@ -104,7 +104,7 @@ passes, not by recursion, so it can't overflow the calculator's stack.
 
 ## Files
 
-- Sheets are `.CSV` files in `BIN/APPS/SPREADSHEET` on the calculator's drive.
+- Sheets are `.CSV` files in `BIN/APPS/PX-Sheet` on the calculator's drive.
 - Each cell is saved as typed, with formulas starting with `=`.
 - Opening reads comma, semicolon or tab files. In a semicolon file it also reads
   decimal commas such as `1,5`.
@@ -117,10 +117,10 @@ passes, not by recursion, so it can't overflow the calculator's stack.
 
 | VS Code task | Command | What it does |
 |---|---|---|
-| Build | `make` | `build/SPREADSHEET.bin` |
+| Build | `make` | `build/PX-Sheet.bin` |
 | Test | `make test` | The engine on the Mac (`tests/test_sheet.c`): formulas, errors, number display, copying, CSV. |
 | Simulate | `make sim` | Opens `sim/drive/.../BUDGET.CSV`, types a formula, opens the catalog and points. Screenshots are saved in `build/sim-out`. |
-| | `tools/shots.sh` | Takes the manual's screenshots in the simulator, in `build/shots`, then builds `spreadsheet_manual.html` (`tools/make_manual.py`, `tools/manual.css`). Run it after changing a screen or the keys. |
+| | `tools/shots.sh` | Takes the manual's screenshots in the simulator, in `build/shots`, then builds `px-sheet_manual.html` (`tools/make_manual.py`, `tools/manual.css`). Run it after changing a screen or the keys. |
 | Simulate live | `make live` | In the browser, with a keypad. |
 | Install | `make install` | Copies the `.bin` to the calculator in USB Drive mode. |
 

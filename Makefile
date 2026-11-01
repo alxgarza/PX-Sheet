@@ -1,5 +1,5 @@
 # A PX-42F app or game. Change these two for your own:
-NAME := SPREADSHEET# the file: build/SPREADSHEET.bin, shown in the menu as SPREADSHEET
+NAME := PX-Sheet# the file: build/PX-Sheet.bin, shown in the menu as PX-Sheet
 KIND := APPS# GAMES or APPS: the folder it goes in, /BIN/GAMES or /BIN/APPS
 
 # The simulator's key script (sim/sim.c): keys, waits in ms, shot:NAME.

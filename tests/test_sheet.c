@@ -1,4 +1,4 @@
-/* The spreadsheet's engine (src/sheet.c) on a computer (make test): cells
+/* PX-Sheet's engine (src/sheet.c) on a computer (make test): cells
  * set as typed, then what they show compared with what they should. The
  * numbers are the simulator's (sim/sim_dec.c): doubles, so the expected
  * results are ones that show the same at 15 digits as the calculator's
@@ -318,9 +318,9 @@ int main(void) {
     CHECK(sheet_count() == 26);
 
     if (failures) {
-        printf("%d spreadsheet checks failed\n", failures);
+        printf("%d PX-Sheet checks failed\n", failures);
         return 1;
     }
-    printf("Spreadsheet: all passed\n");
+    printf("PX-Sheet: all passed\n");
     return 0;
 }

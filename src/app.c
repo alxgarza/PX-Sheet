@@ -1,4 +1,4 @@
-/* SPREADSHEET for the PX-42F: the grid, the keys, files. The sheet itself
+/* PX-Sheet for the PX-42F: the grid, the keys, files. The sheet itself
  * -- cells, formulas, CSV -- is sheet.c's.
  *
  * Moving around works as the HP-42S's matrix editor: the arrows go up and
@@ -783,7 +783,7 @@ static void open_menu(void) {
     static const char *list[40];
     int n = px->list("", ".CSV", names, 40);
     if (n == 0) {
-        say("No .CSV in BIN/APPS/SPREADSHEET");
+        say("No .CSV in BIN/APPS/PX-Sheet");
         return;
     }
     for (int k = 0; k < n; k++)
@@ -889,7 +889,7 @@ static void help(void) {
         UP DOWN " move; XEQ: functions; RCL: a cell.",
         "COPY, move, COPY: a block. PASTE puts",
         "it, or fills a marked block with one.",
-        "Sheets: .CSV in BIN/APPS/SPREADSHEET",
+        "Sheets: .CSV in BIN/APPS/PX-Sheet",
     };
     px->clear();
     for (int i = 0; i < 12; i++)

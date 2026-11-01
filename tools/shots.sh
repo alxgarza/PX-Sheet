@@ -1,7 +1,7 @@
 #!/bin/bash
 # Every screenshot the manual uses, from the simulator, in build/shots:
 # a/ the budget (opening, typing, the catalog, pointing, menus), b/ the
-# savings (copy and fill). Then the manual (spreadsheet_manual.html).
+# savings (copy and fill). Then the manual (px-sheet_manual.html).
 #
 #   tools/shots.sh
 set -e

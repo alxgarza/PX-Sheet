@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Builds spreadsheet_manual.html, the Spreadsheet's manual: one HTML file
+"""Builds px-sheet_manual.html, PX-Sheet's manual: one HTML file
 with its pictures inside. The two keyboard maps come from src/app.c's own
 tables and the functions from src/sheet.c's, so the manual says what the
 keys type and what the app has; the screenshots are the simulator's
@@ -103,14 +103,14 @@ page = r'''<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PX-42F Spreadsheet</title>
+<title>PX-Sheet</title>
 STYLE
 </head>
 <body>
 <main>
 
 <header class="cover">
-<h1>PX-42F Spreadsheet</h1>
+<h1>PX-Sheet</h1>
 <p>A spreadsheet for the PX-42F calculator, with Excel's formulas worked out in the calculator's own 34-digit decimals, and sheets saved as CSV files.</p>
 </header>
 
@@ -135,7 +135,7 @@ STYLE
 <!-- ============================================================ -->
 <h2 id="intro">1. What it is</h2>
 
-<p>The Spreadsheet turns the PX-42F into a pocket spreadsheet: a grid of cells, A1 to Z999, where each cell holds a number, some text, or a formula that works something out from other cells. Change a number and every formula that depends on it changes too.</p>
+<p>PX-Sheet turns the PX-42F into a pocket spreadsheet: a grid of cells, A1 to Z999, where each cell holds a number, some text, or a formula that works something out from other cells. Change a number and every formula that depends on it changes too.</p>
 <ul>
   <li><strong>The calculator's numbers.</strong> Formulas are worked out in 34-digit decimals, from the same library Plus42 computes with. <code>=0.1+0.2</code> is exactly 0.3.</li>
   <li><strong>Excel's formulas.</strong> <code>=SUM(B2:B9)</code>, <code>=IF(A1&gt;0,A1,0)</code>, <code>$A$1</code> and the rest work as in Excel, with the same function names.</li>
@@ -155,13 +155,13 @@ STYLE
 <ol>
   <li>The calculator needs the PX-42F-Plus firmware with app API version 4 or later.</li>
   <li>On the calculator, open <span class="mono">Settings &rarr; USB Drive &rarr; Connect to Computer</span>.</li>
-  <li>Copy <code>SPREADSHEET.bin</code> into <code>BIN/APPS</code> on the drive named <code>PX-42F</code>. From the project folder, <code>make install</code> does it.</li>
-  <li>To try the examples, copy <code>BUDGET.CSV</code> and <code>SAVINGS.CSV</code> (in the project's <code>sim/drive/BIN/APPS/SPREADSHEET/</code>) into <code>BIN/APPS/SPREADSHEET</code> on the drive. Make the folder if it isn't there.</li>
+  <li>Copy <code>PX-Sheet.bin</code> into <code>BIN/APPS</code> on the drive named <code>PX-42F</code>. From the project folder, <code>make install</code> does it.</li>
+  <li>To try the examples, copy <code>BUDGET.CSV</code> and <code>SAVINGS.CSV</code> (in the project's <code>sim/drive/BIN/APPS/PX-Sheet/</code>) into <code>BIN/APPS/PX-Sheet</code> on the drive. Make the folder if it isn't there.</li>
   <li>Eject the drive, then press <kbd>EXIT</kbd> on the calculator.</li>
 </ol>
 
 <h3>Starting and leaving</h3>
-<p>Start it from <span class="mono">Settings &rarr; Games &amp; Apps &rarr; Apps &rarr; SPREADSHEET</span>. It opens the sheet you had last, or an empty one called SHEET1 the first time.</p>
+<p>Start it from <span class="mono">Settings &rarr; Games &amp; Apps &rarr; Apps &rarr; PX-Sheet</span>. It opens the sheet you had last, or an empty one called SHEET1 the first time.</p>
 <p>To leave, press <kbd>EXIT</kbd> (the <kbd>ON</kbd> key). If the sheet has changes that aren't saved, it asks first:</p>
 <figure>IMG:a/save_question.png|Save changes to BUDGET?|<figcaption><kbd>ENTER</kbd> saves, <kbd>&larr;</kbd> leaves without saving, <kbd>EXIT</kbd> goes back to the sheet.</figcaption></figure>
 <p>If the Sleep Timer or an empty battery ends the app before you've saved, there's no time to ask. The changes are kept anyway, and the sheet comes back as you left it the next time you start the app. It says so on the bottom line; save it then to keep it.</p>
@@ -363,7 +363,7 @@ FUNCTIONS_TABLE
 <!-- ============================================================ -->
 <h2 id="files">10. Files</h2>
 
-<p>Sheets are CSV files in <code>BIN/APPS/SPREADSHEET</code> on the calculator's drive, named <code>NAME.CSV</code>. FILE in the menu has:</p>
+<p>Sheets are CSV files in <code>BIN/APPS/PX-Sheet</code> on the calculator's drive, named <code>NAME.CSV</code>. FILE in the menu has:</p>
 <div class="table-wrap"><table>
 <thead><tr><th>Choice</th><th>Does</th></tr></thead>
 <tbody>
@@ -379,7 +379,7 @@ FUNCTIONS_TABLE
 </div>
 
 <h3>On a computer</h3>
-<p>In USB Drive mode, the sheets are in <code>BIN/APPS/SPREADSHEET</code>. A CSV file is the sheet as text, a row on each line, the cells separated by commas.</p>
+<p>In USB Drive mode, the sheets are in <code>BIN/APPS/PX-Sheet</code>. A CSV file is the sheet as text, a row on each line, the cells separated by commas.</p>
 <ul>
   <li><strong>Saving</strong> writes each cell as you typed it, formulas with their <code>=</code>. Excel and Numbers open the file with the formulas working.</li>
   <li><strong>Opening</strong> reads files with commas, semicolons or tabs between the cells, such as Excel writes in different countries. In a semicolon file, numbers with a decimal comma (<code>1,5</code>) are read as numbers.</li>
@@ -404,7 +404,7 @@ FUNCTIONS_TABLE
 <p><kbd>SHIFT</kbd> HELP shows this on the calculator:</p>
 <figure>IMG:a/help.png|The help page|<figcaption>HELP.</figcaption></figure>
 
-<footer>PX-42F Spreadsheet. Plus42 and its decimal arithmetic are Thomas Okken's; Excel is Microsoft's.</footer>
+<footer>PX-Sheet. Plus42 and its decimal arithmetic are Thomas Okken's; Excel is Microsoft's.</footer>
 </main>
 </body>
 </html>
@@ -415,6 +415,6 @@ out = out.replace('KEYS_123', keyboard(False, 'The 123 keyboard'))
 out = out.replace('KEYS_ABC', keyboard(True, 'The ABC keyboard'))
 out = out.replace('FUNCTIONS_TABLE', functions_table())
 out = re.sub(r'IMG:([^|]+)\|([^|]+)\|', lambda m: img(m.group(1), m.group(2)), out)
-path = os.path.join(PROJ, 'spreadsheet_manual.html')
+path = os.path.join(PROJ, 'px-sheet_manual.html')
 open(path, 'w').write(out)
 print('%s: %d bytes' % (os.path.relpath(path, PROJ), len(out)))
